@@ -6,7 +6,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import UserInput from './userinput.jsx';
 import DaysWeatherData from './daysweatherdata.jsx'
 import WeatherCard from './weathercard.jsx'
 injectTapEventPlugin();
@@ -17,7 +16,6 @@ ReactDOM.render(<MuiThemeProvider>
       title="Weather Forcast Application"
       iconElementLeft={<IconButton></IconButton>}
       />
-		<UserInput/>
 		<DaysWeatherData/>
 		<WeatherCard/>
 		</div>

@@ -13,6 +13,7 @@ class WeatherCard extends Component{
         data1:[]
       }
    }
+
 componentDidMount() {
 	this.setState(
 
@@ -26,7 +27,10 @@ componentDidMount() {
 								{this.state.data1.map((a,key)=>{
                                    
 									return( this.state.data[0].dt_txt.split(" ")[0]==a.dt_txt.split(" ")[0]?<table key={key} style={{margin:"10px", border:"2px solid"}}>
-    <tr style={{border: "1px solid black"}}>Time {a.dt_txt}</tr>
+    <tr style={{border: "1px solid black"}}>
+    <td style={{border: "1px solid black"}}>Time</td>
+        <td style={{border: "1px solid black"}}>{a.dt_txt.split(" ")[1]}</td>
+         </tr>
     <tr style={{border: "1px solid black"}}>
  		<td style={{border: "1px solid black"}}>Temp</td>
     	<td style={{border: "1px solid black"}}>{a.main.temp} F</td>
@@ -47,8 +51,7 @@ componentDidMount() {
 								})}
 							</div>
 						:""}
-					{console.log("hello",this.state.data)}
-
+				
 					</div>
 
 				);

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {Component} from 'react';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import WeatherCard from './weathercard.jsx'
+import TextField from 'material-ui/TextField';
 var Flex=require("../../node_modules/flexboxgrid/css/flexboxgrid.css");
 
 class DaysWeatherData extends Component{
@@ -10,32 +11,41 @@ class DaysWeatherData extends Component{
       super(props);
 		
       this.state = {
-        data:{}
+        data:{},city:null
       }
    }
+   handleCity(e) {
+   	e.preventDefault();
+        var data = e.target.value;
 
-   componentDidMount() {
+        this.setState({city: data});
+        
 
+				}
+componentDidMount() {
+	
 		$.ajax({
-			url: "http://api.openweathermap.org/data/2.5/forecast?q=Kurnool,in&mode=json&appid=5c0b52705f677d3217ce78a3d1865e4f",
+			url: "http://api.openweathermap.org/data/2.5/forecast?q=Bangalore,in&mode=json&appid=5c0b52705f677d3217ce78a3d1865e4f",
 			dataType: 'json',
 			type: 'GET',
 		}).done(function(d){
+
+			 console.log("hulaa ha hu",d);
+
 			this.setState({data:d});
-			console.dir(this.state.data);
+			
 		}.bind(this))
-
-	}
-
+}
+   
 
 	render(){
 		return(
+			
 			<center><Card style={{marginTop:"10px",width:"80%",textAlign:"center"}}>
     
     
-    <CardTitle title="Card title" subtitle="Card subtitle" />
+    <CardTitle title="Bangalore Weather Details" />
     	<div className="container-fluid">
-    	{console.log("error handle",this.state.data)}
     	{this.state.data.city?
     			<table style={{border:"2px solid black"}}><tr style={{margin:"10px"}}>
 				    <td style={{ marginTop:"10px"}}><WeatherCard data={this.state.data.list.slice(0,7 )} data1={this.state.data.list}/></td>
@@ -49,7 +59,6 @@ class DaysWeatherData extends Component{
 		</div>
 
     </Card></center>
-
 
     );
 	}
